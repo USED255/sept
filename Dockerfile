@@ -8,6 +8,7 @@ RUN    go build -v
 RUN    go test ./... -cover -v
 
 FROM alpine:latest
+ENV NAME sept
 RUN apk add --no-cache tzdata
 CMD [ "/$NAME" ]
 COPY --from=build /$NAME/$NAME  /$NAME
