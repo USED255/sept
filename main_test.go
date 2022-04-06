@@ -44,6 +44,7 @@ func TestPing2(t *testing.T) {
 	assert.LessOrEqual(t, ts, int64(j["timestamp"].(float64)))
 	assert.Equal(t, http.StatusOK, int(j["status"].(float64)))
 	assert.Equal(t, "pong", j["message"])
+	assert.Equal(t, "", j["say"])
 }
 
 func TestPingSay(t *testing.T) {
