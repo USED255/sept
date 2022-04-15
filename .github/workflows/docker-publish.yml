@@ -104,7 +104,7 @@ jobs:
           dst: docker.io/${{ env.IMAGE_NAME }}:latest
 
       - name: Sync README
-      - uses: meeDamian/sync-readme@v1.0.6
+        uses: meeDamian/sync-readme@v1.0.6
         with:
           pass: ${{ secrets.DOCKERHUB_TOKEN }}
           description: https://github.com/USED255/sept
