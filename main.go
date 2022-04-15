@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 type Req struct {
@@ -34,6 +35,7 @@ func Ping(c *gin.Context) {
 		"status":    http.StatusOK,
 		"message":   "pong",
 		"timestamp": GetUnixMillisTimestamp(),
+		"uuid":      uuid.New().String(),
 	}
 
 	var req Req
