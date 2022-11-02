@@ -1,0 +1,44 @@
+name: Coverage
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "*.go"
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/go.yml"
+  pull_request:
+    paths:
+      - "*.go"
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/go.yml"
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
+          check-latest: true
+          cache: true
+
+      - name: Test
+        run: go test -race -coverprofile=coverage.txt -covermode=atomic -v ./...
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.txt
+          verbose: true # optional (default = false)
